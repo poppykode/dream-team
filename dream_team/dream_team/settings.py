@@ -11,9 +11,19 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as messages
 
+MESSAGE_TAGS = {
+    messages.INFO: 'info',
+    messages.SUCCESS:'success',
+    messages.ERROR:'danger',
+    messages.WARNING:'warning',
+}
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -55,7 +65,7 @@ ROOT_URLCONF = 'dream_team.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,3 +140,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [STATIC_DIR, ]
+
+# LOGIN_REDIRECT_URL ='/'
+# LOGOUT_REDIRECT_URL='/accounts/login/'
+
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
